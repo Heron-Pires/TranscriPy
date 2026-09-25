@@ -1,7 +1,7 @@
 *
 !.gitignore
-!transcripy.py
 !README.md
+!transcripy.py
 !requirements.txt
 !run.bat
 !run.sh
