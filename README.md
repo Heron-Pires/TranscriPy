@@ -1,4 +1,4 @@
-# TranscriPy 🎙️
+# TranscriPy
 
 **TranscriPy** is a lightweight, local, and privacy-focused desktop audio transcription tool built with Python, [CustomTkinter](https://github.com/TomSchimansky/CustomTkinter), and [faster-whisper](https://github.com/SYSTRAN/faster-whisper).
 
@@ -6,19 +6,19 @@ It runs completely offline on your computer (CPU-optimized with INT8 quantizatio
 
 ---
 
-## ✨ Features
+## Features
 
-- **🔒 100% Private & Local**: Your audio files and transcripts never leave your machine.
-- **🌐 Automatic Language Detection**: Transcribes audio in English, Portuguese, Spanish, French, German, and 90+ other languages automatically.
-- **⚡ Fast & Efficient**: Powered by `faster-whisper` (`small` model with `int8` quantization), providing up to 4x speedup over standard Whisper on CPU.
-- **🎨 Modern Dark UI**: Sleek, distraction-free desktop interface built with CustomTkinter.
-- **📊 Real-time Progress Bar**: Displays actual transcription progress percentage and step-by-step status.
-- **📁 Wide Format Support**: Accepts `.mp3`, `.wav`, `.m4a`, `.mp4`, `.aac`, and `.flac`.
-- **💾 Automatic Export**: Transcriptions are automatically saved as `[filename]_transcription.txt` in the same folder as the input audio.
+- **100% Private & Local**: Your audio files and transcripts never leave your machine.
+- **Automatic Language Detection**: Transcribes audio in English, Portuguese, Spanish, French, German, and 90+ other languages automatically.
+- **Fast & Efficient**: Powered by `faster-whisper` (`small` model with `int8` quantization), providing up to 4x speedup over standard Whisper on CPU.
+- **Modern Dark UI**: Sleek, distraction-free desktop interface built with CustomTkinter.
+- **Real-time Progress Bar**: Displays actual transcription progress percentage and step-by-step status.
+- **Wide Format Support**: Accepts `.mp3`, `.wav`, `.m4a`, `.mp4`, `.aac`, and `.flac`.
+- **Automatic Export**: Transcriptions are automatically saved as `[filename]_transcription.txt` in the same folder as the input audio.
 
 ---
 
-## 📋 System Requirements
+## System Requirements
 
 - **Python**: Version `3.8` to `3.12` (Python `3.10` or `3.11` recommended)
 - **FFmpeg**: Required for audio decoding across formats.
@@ -28,9 +28,9 @@ It runs completely offline on your computer (CPU-optimized with INT8 quantizatio
 
 ---
 
-## 🚀 Installation
+## Installation
 
-### 🪟 Windows
+### Windows
 
 #### 1. Install Python
 1. Download Python from [python.org](https://www.python.org/downloads/).
@@ -53,7 +53,7 @@ Choose **one** of the methods below:
 #### 3. Clone or Download this Project
 Open PowerShell or Command Prompt:
 ```powershell
-git clone https://github.com/<username>/transcripy.git
+git clone https://github.com/Heron-Pires/transcripy.git
 cd transcripy
 ```
 *(Or download the ZIP, extract it, and navigate to the `transcripy` folder)*
@@ -72,7 +72,7 @@ pip install -r requirements.txt
 
 ---
 
-### 🐧 Linux (Ubuntu, Debian, Fedora, Arch)
+### Linux (Ubuntu, Debian, Fedora, Arch)
 
 #### 1. Install System Dependencies (Python, pip, venv, Tkinter, and FFmpeg)
 
@@ -94,7 +94,7 @@ pip install -r requirements.txt
 
 #### 2. Clone or Navigate to the Project Directory
 ```bash
-git clone https://github.com/<username>/transcripy.git
+git clone https://github.com/Heron-Pires/transcripy.git
 cd transcripy
 ```
 
@@ -112,7 +112,7 @@ pip install -r requirements.txt
 
 ---
 
-## 💻 How to Run
+## How to Run
 
 1. Make sure your virtual environment is activated:
    - **Windows**: `venv\Scripts\activate`
@@ -136,11 +136,11 @@ pip install -r requirements.txt
 
 ---
 
-## 🗑️ Uninstallation
+## Uninstallation
 
 If you wish to remove TranscriPy and its associated files from your system:
 
-### 🪟 Windows
+### Windows
 
 1. **Delete the Virtual Environment & Dependencies**:
    Open PowerShell in the `transcripy` directory:
@@ -170,7 +170,7 @@ If you wish to remove TranscriPy and its associated files from your system:
 
 ---
 
-### 🐧 Linux
+### Linux
 
 1. **Delete the Virtual Environment & Dependencies**:
    ```bash
@@ -206,7 +206,7 @@ If you wish to remove TranscriPy and its associated files from your system:
 
 ---
 
-## ❓ Troubleshooting & FAQ
+## Troubleshooting & FAQ
 
 <details>
 <summary><b>1. "FileNotFoundError" or error related to FFmpeg</b></summary>
@@ -247,6 +247,6 @@ You can change `"small"` to `"tiny"`, `"base"`, `"medium"`, or `"large-v3"` depe
 
 ---
 
-## 📄 License
+## License
 
 This project is open-source and free to use. Licensed under the [MIT License](https://opensource.org/licenses/MIT).
