@@ -74,14 +74,10 @@ class TranscriberApp(ctk.CTk):
                 )
                 self.model = WhisperModel("small", device="cpu", compute_type="int8")
 
-            self.after(
-                0, self.update_progress_ui, 0, "Transcribing audio..."
-            )
+            self.after(0, self.update_progress_ui, 0, "Transcribing audio...")
 
             # Transcribe with automatic language detection
-            segments, info = self.model.transcribe(
-                audio_path, vad_filter=True
-            )
+            segments, info = self.model.transcribe(audio_path, vad_filter=True)
             total_duration = info.duration
             full_text = []
 
