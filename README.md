@@ -2,25 +2,30 @@
 
 **TranscriPy** is a lightweight, local, and privacy-focused desktop audio transcription tool built with Python, [CustomTkinter](https://github.com/TomSchimansky/CustomTkinter), and [faster-whisper](https://github.com/SYSTRAN/faster-whisper).
 
-It runs completely offline on your computer (CPU-optimized with INT8 quantization), detects speech in multiple languages automatically, and saves transcripts directly into clean text files.
+It runs completely offline on your computer (CPU or NVIDIA GPU with CUDA acceleration), detects speech in multiple languages automatically, and saves transcripts directly into clean text files.
 
 ---
 
 ## Features
 
 - **100% Private & Local**: Your audio files and transcripts never leave your machine.
+- **Hardware Acceleration (GPU/CUDA)**: Optional toggle for NVIDIA GPU acceleration (INT8 / FP16 / FP32) with automatic CPU fallback.
+- **Model Selection**: Switch between Whisper model sizes (`tiny`, `base`, `small`, `medium`) directly from the UI.
+- **Optional Timestamps**: Toggle timestamp markers (`[00:01:23]`) or output clean text paragraphs.
+- **Optional Live Text Preview**: Toggle a real-time text view to watch transcripts stream segment by segment, with **Copy Text** and **Open Folder** shortcuts.
+- **Cancellation Control**: Stop transcription at any point and automatically preserve the partial transcript.
 - **Automatic Language Detection**: Transcribes audio in English, Portuguese, Spanish, French, German, and 90+ other languages automatically.
-- **Fast & Efficient**: Powered by `faster-whisper` (`small` model with `int8` quantization), providing up to 4x speedup over standard Whisper on CPU.
+- **Fast & Efficient**: Powered by `faster-whisper` with INT8 quantization, providing up to 4x speedup over standard Whisper on CPU and 10x+ on CUDA.
 - **Modern Dark UI**: Sleek, distraction-free desktop interface built with CustomTkinter.
 - **Real-time Progress Bar**: Displays actual transcription progress percentage and step-by-step status.
-- **Wide Format Support**: Accepts `.mp3`, `.wav`, `.m4a`, `.mp4`, `.aac`, and `.flac`.
+- **Wide Format Support**: Accepts `.mp3`, `.wav`, `.m4a`, `.mp4`, `.aac`, `.flac`, `.mkv`, `.ogg`, and `.wma`.
 - **Automatic Export**: Transcriptions are automatically saved as `[filename]_transcription.txt` in the same folder as the input audio.
 
 ---
 
 ## Prerequisites
 
-1. **Python 3.8 to 3.12** ([python.org](https://www.python.org/downloads/)). When installing on Windows, check **"Add Python to PATH"**.
+1. **Python 3.8 to 3.12+** ([python.org](https://www.python.org/downloads/)). When installing on Windows, check **"Add Python to PATH"**.
 2. **FFmpeg** (required for decoding audio):
    - **Windows**: Run `winget install Gyan.FFmpeg` in terminal, or install via chocolatey (`choco install ffmpeg`).
    - **Linux (Ubuntu/Debian)**: `sudo apt install ffmpeg`
@@ -38,7 +43,7 @@ You do **not** need a virtual environment. You can install the dependencies glob
    pip install -r requirements.txt
    ```
 2. **To launch the app**:
-   - Simply double-click **`run.bat`** (or double-click `transcriPy.py`).
+   - Simply double-click **`run.bat`** (or double-click `transcripy.py`).
    *(The `run.bat` script can also auto-install missing packages on first launch).*
 
 ### Linux
@@ -51,7 +56,7 @@ You do **not** need a virtual environment. You can install the dependencies glob
 2. **To launch the app**:
    - Run:
      ```bash
-     python3 transcriPy.py
+     python3 transcripy.py
      ```
    - Or use the included script:
      ```bash
@@ -63,10 +68,15 @@ You do **not** need a virtual environment. You can install the dependencies glob
 
 ## How to Use
 
-1. Click **"Select Audio (MP3, WAV, M4A...)"**.
-2. Select your audio file.
-3. Wait for transcription to complete (first run downloads the ~460 MB Whisper model once).
-4. The transcript is automatically saved alongside the original audio file as `[filename]_transcription.txt`.
+1. **Configure Options (Optional)**:
+   - Check **GPU Acceleration (CUDA)** to use your NVIDIA graphics card.
+   - Choose your **Whisper Model** size (`small` recommended for a great balance of speed and accuracy).
+   - Check **Include Timestamps** if you want `[mm:ss]` markers for each spoken sentence.
+   - Check **Show Text Preview** if you want to inspect text live as it is transcribed.
+2. Click **"Select Audio (MP3, WAV, M4A...)"**.
+3. Select your audio or video file.
+4. Wait for transcription to complete (first run downloads the Whisper model once).
+5. The transcript is automatically saved alongside the original audio file as `[filename]_transcription.txt`. You can also click **"Copy Text"** or **"Open Folder"** directly from the app.
 
 ---
 
@@ -75,14 +85,14 @@ You do **not** need a virtual environment. You can install the dependencies glob
 <details>
 <summary><b>Click to expand instructions for Python Virtual Environment (venv)</b></summary>
 
-A virtual environment isolates project dependencies from your system's global Python. While not required, developers often prefer it:
+A virtual environment isolates project dependencies from your system's global Python:
 
 ### Windows (venv)
 ```powershell
 python -m venv venv
 venv\Scripts\activate
 pip install -r requirements.txt
-python transcriPy.py
+python transcripy.py
 ```
 
 ### Linux (venv)
@@ -90,7 +100,7 @@ python transcriPy.py
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
-python3 transcriPy.py
+python3 transcripy.py
 ```
 </details>
 
@@ -153,17 +163,13 @@ Install the Tkinter package:
 <details>
 <summary><b>3. Why is the first transcription slower?</b></summary>
 
-On the first run, the Whisper `small` model (~460 MB) is downloaded automatically from Hugging Face. After this initial download, all transcriptions run locally and offline.
+On the first run, the selected Whisper model is downloaded automatically from Hugging Face. After this initial download, all transcriptions run locally and offline.
 </details>
 
 <details>
-<summary><b>4. Can I change the Whisper model size?</b></summary>
+<summary><b>4. How does CUDA acceleration work?</b></summary>
 
-Yes. In `transcriPy.py`, modify:
-```python
-self.model = WhisperModel("small", device="cpu", compute_type="int8")
-```
-Options: `"tiny"`, `"base"`, `"small"`, `"medium"`, or `"large-v3"`.
+When enabled, TranscriPy detects your NVIDIA GPU and runs using `ctranslate2` CUDA kernels. If CUDA runtime libraries are not present, it will automatically fallback to CPU without interrupting the workflow.
 </details>
 
 ---

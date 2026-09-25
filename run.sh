@@ -14,7 +14,7 @@ fi
 # Function to run the app
 run_app() {
     echo "[INFO] Starting TranscriPy..."
-    "$1" transcriPy.py
+    "$1" transcripy.py
 }
 
 # 1. Check if dependencies are already installed globally or in current environment

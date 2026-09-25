@@ -40,7 +40,7 @@ if %errorlevel% neq 0 (
 
 REM Launch the application
 echo [INFO] Starting TranscriPy...
-%PYTHON_CMD% transcriPy.py
+%PYTHON_CMD% transcripy.py
 
 REM If the app closed with an error, keep the console open
 if %errorlevel% neq 0 (
