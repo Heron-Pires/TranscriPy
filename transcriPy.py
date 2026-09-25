@@ -15,7 +15,7 @@ class TranscriberApp(ctk.CTk):
 
         self.title("TranscriPy - Whisper")
         self.geometry("550x350")
-        self.resizable(False, False)
+        self.resizable(True, True)
 
         # Variable to store the loaded model in memory
         self.model = None
